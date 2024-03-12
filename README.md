@@ -1,29 +1,26 @@
-# Pomodoro Timer Starter files
+# Pomodoro App
 
-Here lies the starter files for the Pomodoro timer tutorial which can be found
-here: https://freshman.tech/pomodoro-timer
+The Pomodoro App is a simple yet effective time management tool that helps you to implement the Pomodoro Technique for improving productivity. The app is built with JavaScript, offering a straightforward interface for setting Pomodoro (work) intervals followed by short and long breaks.
 
-## Live demo
+## Features
 
-The completed version of this project is live at
-https://freshman-pomodoro.surge.sh/
+- Customizable Pomodoro, short break, and long break durations
+- Audio notifications at the end of each interval
+- A sleek and intuitive user interface
+- Progress tracking and statistics (optional feature, can be customized or removed)
+- Lightweight and can run in any modern web browser
 
-## Prerequisites
+## Getting Started
 
-You must have [Node.js](https://nodejs.org/en/download/) and
-[npm](https://www.npmjs.com/get-npm) installed on your machine. This project was
-built against the following versions:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Node v13.13.0
-npm v6.14.5
+### Prerequisites
 
-## Get started
+Before you begin, ensure you have the latest version of Node.js installed on your machine. If you do not have Node.js installed, you can download it from [nodejs.org](https://nodejs.org/).
 
-Clone this repository to your local machine with:
+### Installation
+
+1. Clone the repository to your local machine:
 
 ```bash
-$ git clone https://github.com/Freshman-tech/pomodoro-starter-files.git
-```
-
-`cd` into the downloaded directory and follow along with the
-[tutorial](https://freshman.tech/pomodoro-timer/).
+git clone https://github.com/your-username/pomodoro-app.git
