@@ -64,7 +64,7 @@ function switchMode(mode) {
   
 }
 
-  function getRemainingTime(endTime) {
+function getRemainingTime(endTime) {
     const currentTime = Date.parse(new Date());
     const difference = endTime - currentTime;
   
@@ -79,7 +79,7 @@ function switchMode(mode) {
     };
 }
 
-  function startTimer() {
+function startTimer() {
     let { total } = timer.remainingTime;
     const endTime = Date.parse(new Date()) + total * 1000;
 
@@ -129,14 +129,13 @@ function switchMode(mode) {
     countTimerUpInterval = setInterval(countUpTimer, 1000)
 }
 
-  function stopTimer() {
+function stopTimer() {
     clearInterval(interval);
     clearInterval(countTimerUpInterval);
     mainButton.dataset.action = 'start';
     mainButton.textContent = 'start';
     mainButton.classList.remove('active');  
 }
-
 
 //add event handlers
 modeButtons.addEventListener('click', handleMode);
