@@ -1,3 +1,4 @@
+//configure work time and break intervals, one day will be on the frount end
 const timer = {
     pomodoro: 1,
     shortBreak: 1,
@@ -37,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 modeButtons.addEventListener('click', handleMode);
-
 
 const mainButton = document.getElementById('js-btn');
 mainButton.addEventListener('click', () => {
