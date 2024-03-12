@@ -105,7 +105,6 @@ function switchMode(mode) {
         switch (timer.mode) {
             case 'pomodoro':
               task = tasks[tasks.length -1];
-              task.time = countUpTimer();
               totalSeconds = 0;
               console.log(tasks);
               document.getElementById("countupTimer").innerHTML = '00' + ":" + '00' + ":" + '00';
@@ -138,21 +137,6 @@ function switchMode(mode) {
     mainButton.classList.remove('active');  
 }
 
-  function countUpTimer() {
-           ++totalSeconds;
-           var hour = Math.floor(totalSeconds /3600);
-           var minute = Math.floor((totalSeconds - hour*3600)/60);
-           var seconds = totalSeconds - (hour*3600 + minute*60);
-           if(hour < 10)
-             hour = "0"+hour;
-           if(minute < 10)
-             minute = "0"+minute;
-           if(seconds < 10)
-             seconds = "0"+seconds;
-           document.getElementById("countupTimer").innerHTML = hour + ":" + minute + ":" + seconds;
-
-           return hour + ":" + minute + ":" + seconds;
-}
 
 //add event handlers
 modeButtons.addEventListener('click', handleMode);
