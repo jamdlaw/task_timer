@@ -144,7 +144,7 @@ function switchMode(mode) {
               task.time = countUpTimer();
               totalSeconds = 0;
               console.log(tasks);
-              document.getElementById("countupTimer").innerHTML = 00 + ":" + 00 + ":" + 00;
+              document.getElementById("countupTimer").innerHTML = '00' + ":" + '00' + ":" + '00';
               if (timer.sessions % timer.longBreakInterval === 0) {
                 switchMode('longBreak');
               } else {
