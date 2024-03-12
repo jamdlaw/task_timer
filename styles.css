@@ -122,3 +122,21 @@ button:focus, button:active {
     font-size: 8rem;
   }
 }
+
+/* Textbox Style */
+.input-textbox {
+  font-size: 16px; /* Adjust the font size as needed */
+  padding: 10px; /* Padding inside the textbox */
+  margin: 5px 0; /* Margin for spacing outside the textbox */
+  width: calc(100% - 22px); /* Full width minus padding and border */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  border: 2px solid #ccc; /* Border color */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f8f8f8; /* Light grey background */
+  outline: none; /* Remove the outline */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.input-textbox:focus {
+  border-color: #007bff; /* Change border color when focused */
+}
