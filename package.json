@@ -8,18 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Freshman-tech/pomodoro.git"
+    "url": "https://github.com/jamdlaw/task_timer.git"
   },
   "keywords": [
     "pomodoro",
     "javascript"
   ],
-  "author": "Ayooluwa Isaiah <https://freshman.tech/pomodoro-timer>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Freshman-tech/pomodoro/issues"
-  },
-  "homepage": "https://github.com/Freshman-tech/pomodoro#readme",
+  "author": "James Lawrence",
   "dependencies": {
     "browser-sync": "^2.26.12"
   }
