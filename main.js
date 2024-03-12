@@ -6,51 +6,16 @@ const timer = {
     longBreakInterval: 4,
     sessions: 0,
   };
-
-//task object will look like this name:"test", time:0
+//ex task {name:"clean house", time:25}
 const tasks = [];
 const buttonSound = new Audio('button-sound.mp3');
-
+const modeButtons = document.querySelector('#js-mode-buttons');
+const mainButton = document.getElementById('js-btn');
 let interval;
 let countTimerUpInterval;
 let totalSeconds = 0;
 
-const modeButtons = document.querySelector('#js-mode-buttons');
-
-document.addEventListener('DOMContentLoaded', () => {
-     // Let's check if the browser supports notifications
-  if ('Notification' in window) {
-    // If notification permissions have neither been granted or denied
-    if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
-      // ask the user for permission
-      Notification.requestPermission().then(function(permission) {
-        // If permission is granted
-        if (permission === 'granted') {
-          // Create a new notification
-          new Notification(
-            'Awesome! You will be notified at the start of each session'
-          );
-        }
-      });
-    }
-  }
-    switchMode('pomodoro');
-  });
-
-modeButtons.addEventListener('click', handleMode);
-
-const mainButton = document.getElementById('js-btn');
-mainButton.addEventListener('click', () => {
-  buttonSound.play();  
-  const { action } = mainButton.dataset;
-  if (action === 'start') {
-    startTimer();
-  }
-  else {
-    stopTimer();
-  }
-});
-
+//declare functions
 function handleMode(event) {
   const { mode } = event.target.dataset;
   
@@ -79,9 +44,8 @@ function switchMode(mode) {
 
     stopTimer();
     updateClock();
-  }
+}
 
-  
   function updateClock() {
     const { remainingTime } = timer;
     const minutes = `${remainingTime.minutes}`.padStart(2, '0');
@@ -98,7 +62,7 @@ function switchMode(mode) {
     const progress = document.getElementById('js-progress');
     progress.value = timer[timer.mode] * 60 - timer.remainingTime.total;
   
-  }
+}
 
   function getRemainingTime(endTime) {
     const currentTime = Date.parse(new Date());
@@ -113,7 +77,7 @@ function switchMode(mode) {
       minutes,
       seconds,
     };
-  }
+}
 
   function startTimer() {
     let { total } = timer.remainingTime;
@@ -164,7 +128,7 @@ function switchMode(mode) {
     }, 1000);
 
     countTimerUpInterval = setInterval(countUpTimer, 1000)
-  }
+}
 
   function stopTimer() {
     clearInterval(interval);
@@ -172,8 +136,7 @@ function switchMode(mode) {
     mainButton.dataset.action = 'start';
     mainButton.textContent = 'start';
     mainButton.classList.remove('active');  
-  }
-
+}
 
   function countUpTimer() {
            ++totalSeconds;
@@ -189,5 +152,37 @@ function switchMode(mode) {
            document.getElementById("countupTimer").innerHTML = hour + ":" + minute + ":" + seconds;
 
            return hour + ":" + minute + ":" + seconds;
-  }
-  
+}
+
+//add event handlers
+modeButtons.addEventListener('click', handleMode);
+document.addEventListener('DOMContentLoaded', () => {
+  // Let's check if the browser supports notifications
+if ('Notification' in window) {
+ // If notification permissions have neither been granted or denied
+ if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+   // ask the user for permission
+   Notification.requestPermission().then(function(permission) {
+     // If permission is granted
+     if (permission === 'granted') {
+       // Create a new notification
+       new Notification(
+         'Awesome! You will be notified at the start of each session'
+       );
+     }
+   });
+ }
+}
+ switchMode('pomodoro');
+});
+
+mainButton.addEventListener('click', () => {
+buttonSound.play();  
+const { action } = mainButton.dataset;
+if (action === 'start') {
+ startTimer();
+}
+else {
+ stopTimer();
+}
+});
