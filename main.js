@@ -159,9 +159,9 @@ document.getElementById('js-task-list').addEventListener('click', () => {
   completedTasksList.innerHTML = '';
 //test code 
   // Hardcoded task addition for testing
-  const testTaskElement = document.createElement('li');
-  testTaskElement.textContent = `Test Task - 30 minutes`;
-  document.getElementById('completedTasks').appendChild(testTaskElement);
+  //const testTaskElement = document.createElement('li');
+  //testTaskElement.textContent = `Test Task - 30 minutes`;
+  //document.getElementById('completedTasks').appendChild(testTaskElement);
 // test code 
   // Add completed tasks to the list
   tasks.filter(task => task.completed).forEach(task => {
