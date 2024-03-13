@@ -9,6 +9,7 @@ const timerConfig = {
   remainingTime: { total: 60, minutes: 1, seconds: 0 },
 };
 
+//example { name: <taskName>, time:<minutes> , completed:false }
 const tasks = [];
 const buttonSound = new Audio('button-sound.mp3');
 const modeButtons = document.querySelector('#js-mode-buttons');
