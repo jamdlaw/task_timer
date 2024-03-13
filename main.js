@@ -146,3 +146,22 @@ function notifyUser() {
 function playSound() {
   document.querySelector(`[audio-data="${timerConfig.mode}"]`).play();
 }
+
+/* code for completed task panel */
+document.getElementById('js-task-list').addEventListener('click', () => {
+  const taskListPanel = document.getElementById('taskListPanel');
+  const completedTasksList = document.getElementById('completedTasks');
+
+  // Toggle the panel
+  taskListPanel.classList.toggle('open');
+
+  // Clear current list
+  completedTasksList.innerHTML = '';
+
+  // Add completed tasks to the list
+  tasks.filter(task => task.completed).forEach(task => {
+    const taskElement = document.createElement('li');
+    taskElement.textContent = `${task.name} - ${task.time} minutes`;
+    completedTasksList.appendChild(taskElement);
+  });
+});
