@@ -1,24 +1,42 @@
-//configure work time and break intervals, one day will be on the frount end
-const timer = {
-    pomodoro: 1,
-    shortBreak: 1,
-    longBreak: 15,
-    longBreakInterval: 4,
-    sessions: 0,
-  };
-//ex task {name:"clean house", time:25}
+// Configuration for work and break intervals
+const timerConfig = {
+  pomodoro: 1,
+  shortBreak: 1,
+  longBreak: 15,
+  longBreakInterval: 4,
+  sessions: 0,
+  mode: 'pomodoro',
+  remainingTime: { total: 60, minutes: 1, seconds: 0 },
+};
+
 const tasks = [];
 const buttonSound = new Audio('button-sound.mp3');
 const modeButtons = document.querySelector('#js-mode-buttons');
 const mainButton = document.getElementById('js-btn');
 let interval;
-let countTimerUpInterval;
-let totalSeconds = 0;
 
-//declare functions
-function handleMode(event) {
-  const { mode } = event.target.dataset;
-  
+// Event listeners
+document.addEventListener('DOMContentLoaded', initialize);
+modeButtons.addEventListener('click', handleModeClick);
+mainButton.addEventListener('click', handleMainButtonClick);
+
+function initialize() {
+  requestNotificationPermission();
+  switchMode('pomodoro');
+}
+
+function requestNotificationPermission() {
+  if ('Notification' in window && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+    Notification.requestPermission().then(permission => {
+      if (permission === 'granted') {
+        new Notification('Notifications are enabled.');
+      }
+    });
+  }
+}
+
+function handleModeClick(event) {
+  const mode = event.target.dataset.mode;
   if (!mode) return;
 
   switchMode(mode);
@@ -26,144 +44,105 @@ function handleMode(event) {
 }
 
 function switchMode(mode) {
-    timer.mode = mode;
-    timer.remainingTime = {
-      total: timer[mode] * 60,
-      minutes: timer[mode],
+  Object.assign(timerConfig, {
+    mode,
+    remainingTime: {
+      total: timerConfig[mode] * 60,
+      minutes: timerConfig[mode],
       seconds: 0,
-    };
-  
-    document
-      .querySelectorAll('button[data-mode]')
-      .forEach(e => e.classList.remove('active'));
-    document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
-    document.body.style.backgroundColor = `var(--${mode})`;
-    document
-    .getElementById('js-progress')
-    .setAttribute('max', timer.remainingTime.total);
+    },
+  });
 
-    stopTimer();
-    updateClock();
+  document.querySelectorAll('button[data-mode]').forEach(e => e.classList.remove('active'));
+  document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
+  document.body.style.backgroundColor = `var(--${mode})`;
+  document.getElementById('js-progress').setAttribute('max', timerConfig.remainingTime.total);
+
+  stopTimer();
+  updateClock();
 }
 
-  function updateClock() {
-    const { remainingTime } = timer;
-    const minutes = `${remainingTime.minutes}`.padStart(2, '0');
-    const seconds = `${remainingTime.seconds}`.padStart(2, '0');
-  
-    const min = document.getElementById('js-minutes');
-    const sec = document.getElementById('js-seconds');
-    min.textContent = minutes;
-    sec.textContent = seconds;
-
-    const text = timer.mode === 'pomodoro' ? 'Get back to work!' : 'Take a break!';
-    document.title = `${minutes}:${seconds} — ${text}`;
-
-    const progress = document.getElementById('js-progress');
-    progress.value = timer[timer.mode] * 60 - timer.remainingTime.total;
-  
-}
-
-function getRemainingTime(endTime) {
-    const currentTime = Date.parse(new Date());
-    const difference = endTime - currentTime;
-  
-    const total = Number.parseInt(difference / 1000, 10);
-    const minutes = Number.parseInt((total / 60) % 60, 10);
-    const seconds = Number.parseInt(total % 60, 10);
-  
-    return {
-      total,
-      minutes,
-      seconds,
-    };
+function updateClock() {
+  const { minutes, seconds } = timerConfig.remainingTime;
+  document.getElementById('js-minutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('js-seconds').textContent = String(seconds).padStart(2, '0');
+  document.title = `${minutes}:${seconds} — ${timerConfig.mode === 'pomodoro' ? 'Get back to work!' : 'Take a break!'}`;
+  document.getElementById('js-progress').value = timerConfig[timerConfig.mode] * 60 - timerConfig.remainingTime.total;
 }
 
 function startTimer() {
-    let { total } = timer.remainingTime;
-    const endTime = Date.parse(new Date()) + total * 1000;
+  if (timerConfig.mode === 'pomodoro') {
+    timerConfig.sessions++;
+    recordTask();
+  }
 
-    if (timer.mode === 'pomodoro'){
-      timer.sessions++; 
-      let taskName = document.getElementById('taskName').value;
-      tasks.push({'name': taskName, 'time':0.0 });
-      console.log(tasks);
+  toggleMainButton(true);
+  const endTime = new Date().getTime() + timerConfig.remainingTime.total * 1000;
+
+  interval = setInterval(() => {
+    timerConfig.remainingTime = calculateRemainingTime(endTime);
+    updateClock();
+
+    if (timerConfig.remainingTime.total <= 0) {
+      clearInterval(interval);
+      handleTimerCompletion();
     }
-     
-    
-    mainButton.dataset.action = 'stop';
-    mainButton.textContent = 'stop';
-    mainButton.classList.add('active');
-
-    interval = setInterval(function() {
-      timer.remainingTime = getRemainingTime(endTime);
-      updateClock();
-  
-      total = timer.remainingTime.total;
-      if (total <= 0) {
-        clearInterval(interval);
-        switch (timer.mode) {
-            case 'pomodoro':
-              task = tasks[tasks.length -1];
-              totalSeconds = 0;
-              console.log(tasks);
-              document.getElementById("countupTimer").innerHTML = '00' + ":" + '00' + ":" + '00';
-              if (timer.sessions % timer.longBreakInterval === 0) {
-                switchMode('longBreak');
-              } else {
-                switchMode('shortBreak');
-              }
-              break;
-            default:
-              switchMode('pomodoro');
-          }
-        if (Notification.permission === 'granted') {
-        const text =
-            timer.mode === 'pomodoro' ? 'Get back to work!' : 'Take a break!';
-        new Notification(text);
-        }
-        document.querySelector(`[data-sound="${timer.mode}"]`).play();
-      }
-    }, 1000);
+  }, 1000);
 }
 
 function stopTimer() {
-    clearInterval(interval);
-    clearInterval(countTimerUpInterval);
-    mainButton.dataset.action = 'start';
-    mainButton.textContent = 'start';
-    mainButton.classList.remove('active');  
+  clearInterval(interval);
+  toggleMainButton(false);
 }
 
-//add event handlers
-modeButtons.addEventListener('click', handleMode);
-document.addEventListener('DOMContentLoaded', () => {
-  // Let's check if the browser supports notifications
-if ('Notification' in window) {
- // If notification permissions have neither been granted or denied
- if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
-   // ask the user for permission
-   Notification.requestPermission().then(function(permission) {
-     // If permission is granted
-     if (permission === 'granted') {
-       // Create a new notification
-       new Notification(
-         'Awesome! You will be notified at the start of each session'
-       );
-     }
-   });
- }
+function handleMainButtonClick() {
+  buttonSound.play();
+  const action = mainButton.dataset.action;
+  action === 'start' ? startTimer() : stopTimer();
 }
- switchMode('pomodoro');
-});
 
-mainButton.addEventListener('click', () => {
-buttonSound.play();  
-const { action } = mainButton.dataset;
-if (action === 'start') {
- startTimer();
+function toggleMainButton(isActive) {
+  mainButton.dataset.action = isActive ? 'stop' : 'start';
+  mainButton.textContent = isActive ? 'Stop' : 'Start';
+  mainButton.classList.toggle('active', isActive);
 }
-else {
- stopTimer();
+
+function calculateRemainingTime(endTime) {
+  const total = Math.floor((endTime - new Date().getTime()) / 1000);
+  return {
+    total,
+    minutes: Math.floor((total / 60) % 60),
+    seconds: Math.floor(total % 60),
+  };
 }
-});
+
+function recordTask() {
+  const taskName = document.getElementById('taskName').value || 'No task name';
+  tasks.push({ name: taskName, time: timerConfig[timerConfig.mode] });
+}
+
+function handleTimerCompletion() {
+  switch (timerConfig.mode) {
+    case 'pomodoro':
+      if (timerConfig.sessions % timerConfig.longBreakInterval === 0) {
+        switchMode('longBreak');
+      } else {
+        switchMode('shortBreak');
+      }
+      break;
+    default:
+      switchMode('pomodoro');
+  }
+  notifyUser();
+  playSound();
+}
+
+function notifyUser() {
+  if (Notification.permission === 'granted') {
+    new Notification(timerConfig.mode === 'pomodoro' ? 'Time to work!' : 'Time for a break!');
+  }
+}
+
+function playSound() {
+  document.querySelector(`[audio-data="${timerConfig.mode}"]`).play();
+}
