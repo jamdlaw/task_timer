@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import './App.css'; // Make sure to import your CSS styles
+import Clock from './components/Clock';
+import ModeButton from './components/ModeButton';
+import TaskListPanel from './components/TaskListPanel';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [mode, setMode] = useState('pomodoro');
+  const [timer, setTimer] = useState({ minutes: 25, seconds: 0 });
+  const [isActive, setIsActive] = useState(false);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    let interval = null;
+
+    if (isActive) {
+      interval = setInterval(() => {
+        // Timer countdown logic
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [isActive, timer]);
+
+  const handleModeChange = (newMode) => {
+    setMode(newMode);
+    // Update timer based on mode
+  };
+
+  const handleStartStop = () => {
+    setIsActive(!isActive);
+    // Start or stop the timer
+  };
+
+  const markTaskCompleted = (taskName) => {
+    // Logic to mark a task as completed
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <Clock minutes={timer.minutes} seconds={timer.seconds} />
+      <div className="mode-buttons">
+        <ModeButton mode="pomodoro" active={mode === 'pomodoro'} setMode={setMode} />
+        <ModeButton mode="shortBreak" active={mode === 'shortBreak'} setMode={setMode} />
+        <ModeButton mode="longBreak" active={mode === 'longBreak'} setMode={setMode} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <button onClick={handleStartStop}>{isActive ? 'Stop' : 'Start'}</button>
+      <TaskListPanel tasks={tasks} />
+    </div>
+  );
 }
 
-export default App
+export default App;
