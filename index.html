@@ -35,7 +35,6 @@
             Long break
           </button>
           <button
-            data-mode="taskList"
             class="button mode-button"
             id="js-task-list"
           >
@@ -56,7 +55,11 @@
           Start
         </button>
       </div>
-      
+      <!-- Sliding Panel for Completed Tasks -->
+      <div id="taskListPanel" class="task-list-panel">
+        <h2>Completed Tasks</h2>
+        <ul id="completedTasks"></ul>
+      </div>
     </main>
     <div class="hidden">
       <audio src="backtowork.mp3" audio-data="pomodoro"></audio>

@@ -140,3 +140,31 @@ button:focus, button:active {
 .input-textbox:focus {
   border-color: #007bff; /* Change border color when focused */
 }
+
+
+/* sliding completed tasks panel */
+.task-list-panel {
+  position: fixed;
+  right: -250px; /* Start off screen */
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+  transition: right 0.5s ease;
+}
+
+.task-list-panel.open {
+  right: 0; /* Slide in */
+}
+
+/* Additional styling for the task list */
+.task-list-panel ul {
+  list-style: none;
+  padding: 20px;
+}
+
+.task-list-panel h2 {
+  text-align: center;
+  padding: 20px 0;
+}
