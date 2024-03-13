@@ -125,8 +125,6 @@ function startTimer() {
         document.querySelector(`[data-sound="${timer.mode}"]`).play();
       }
     }, 1000);
-
-    //countTimerUpInterval = setInterval(countUpTimer, 1000)
 }
 
 function stopTimer() {
