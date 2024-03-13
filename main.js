@@ -118,7 +118,7 @@ function calculateRemainingTime(endTime) {
 
 function recordTask() {
   const taskName = document.getElementById('taskName').value || 'No task name';
-  tasks.push({ name: taskName, time: timerConfig[timerConfig.mode] });
+  tasks.push({ name: taskName, time: timerConfig[timerConfig.mode], completed:false });
 }
 
 function handleTimerCompletion() {
