@@ -133,6 +133,7 @@ function handleTimerCompletion() {
     default:
       switchMode('pomodoro');
   }
+  tasks[tasks.length - 1].completed = true;
   notifyUser();
   playSound();
 }
