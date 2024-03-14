@@ -40,12 +40,12 @@ function App() {
 
   return (
     <div className="app">
-      <Clock minutes={timer.minutes} seconds={timer.seconds} />
       <div className="mode-buttons">
         <ModeButton mode="pomodoro" active={mode === 'pomodoro'} setMode={setMode} />
         <ModeButton mode="shortBreak" active={mode === 'shortBreak'} setMode={setMode} />
         <ModeButton mode="longBreak" active={mode === 'longBreak'} setMode={setMode} />
       </div>
+      <Clock minutes={timer.minutes} seconds={timer.seconds} />
        {/* Text input for task name */}
        <div className="task-name-input">
         <input
