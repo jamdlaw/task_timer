@@ -11,18 +11,38 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [currentTaskName, setCurrentTaskName] = useState('');
-
+  
   useEffect(() => {
     let interval = null;
-
+  
     if (isActive) {
       interval = setInterval(() => {
-        // Timer countdown logic
+        setTimer(prevTimer => {
+          if (prevTimer.seconds === 0) {
+            if (prevTimer.minutes === 0) {
+              // Timer has finished
+              setIsActive(false); // Stop the timer
+              // Handle completion (e.g., switch modes, mark task as completed, etc.)
+              return { minutes: 0, seconds: 0 };
+            } else {
+              // Minute has ended, start a new minute
+              return { minutes: prevTimer.minutes - 1, seconds: 59 };
+            }
+          } else {
+            // Decrement seconds
+            return { ...prevTimer, seconds: prevTimer.seconds - 1 };
+          }
+        });
       }, 1000);
+    } else if (!isActive && timer.minutes === 0 && timer.seconds === 0) {
+      // Reset the timer when it's stopped and has reached 0
+      // This depends on your app's logic. For example, reset to default time based on the current mode.
+      // setTimer({ minutes: defaultTimeForMode, seconds: 0 }); 
     }
-
+  
     return () => clearInterval(interval);
   }, [isActive, timer]);
+  
 
   const handleModeChange = (newMode) => {
     setMode(newMode);
