@@ -7,7 +7,7 @@ import TaskListPanel from './components/TaskListPanel';
 
 function App() {
   const [mode, setMode] = useState('pomodoro');
-  const [timer, setTimer] = useState({ minutes: 25, seconds: 0 });
+  const [timer, setTimer] = useState({ minutes: 1, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [currentTaskName, setCurrentTaskName] = useState('');
