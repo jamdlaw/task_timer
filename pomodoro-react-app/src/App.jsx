@@ -4,11 +4,13 @@ import Clock from './components/Clock';
 import ModeButton from './components/ModeButton';
 import TaskListPanel from './components/TaskListPanel';
 
+
 function App() {
   const [mode, setMode] = useState('pomodoro');
   const [timer, setTimer] = useState({ minutes: 25, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [currentTaskName, setCurrentTaskName] = useState('');
 
   useEffect(() => {
     let interval = null;
@@ -43,6 +45,16 @@ function App() {
         <ModeButton mode="pomodoro" active={mode === 'pomodoro'} setMode={setMode} />
         <ModeButton mode="shortBreak" active={mode === 'shortBreak'} setMode={setMode} />
         <ModeButton mode="longBreak" active={mode === 'longBreak'} setMode={setMode} />
+      </div>
+       {/* Text input for task name */}
+       <div className="task-name-input">
+        <input
+          type="text"
+          className="input-textbox"
+          placeholder="Enter task name"
+          value={currentTaskName}
+          onChange={(e) => setCurrentTaskName(e.target.value)}
+        />
       </div>
       <button onClick={handleStartStop}>{isActive ? 'Stop' : 'Start'}</button>
       <TaskListPanel tasks={tasks} />
