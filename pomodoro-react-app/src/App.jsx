@@ -40,6 +40,7 @@ function App() {
 
   return (
     <div className="app">
+    <div className="timer">
       <div className="mode-buttons">
         <ModeButton mode="pomodoro" active={mode === 'pomodoro'} setMode={setMode} />
         <ModeButton mode="shortBreak" active={mode === 'shortBreak'} setMode={setMode} />
@@ -58,6 +59,7 @@ function App() {
       </div>
       <button onClick={handleStartStop}>{isActive ? 'Stop' : 'Start'}</button>
       <TaskListPanel tasks={tasks} />
+      </div>
     </div>
   );
 }
