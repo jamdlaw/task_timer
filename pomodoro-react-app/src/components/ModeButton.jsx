@@ -1,3 +1,4 @@
+import React from 'react';
 
 function ModeButton({ mode, active, setMode }) {
     return (
