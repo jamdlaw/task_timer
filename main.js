@@ -159,13 +159,6 @@ document.getElementById('js-task-list').addEventListener('click', () => {
 
   // Clear current list
   completedTasksList.innerHTML = '';
-//test code 
-  // Hardcoded task addition for testing
-  //const testTaskElement = document.createElement('li');
-  //testTaskElement.textContent = `Test Task - 30 minutes`;
-  //document.getElementById('completedTasks').appendChild(testTaskElement);
-// test code 
-  // Add completed tasks to the list
   tasks.filter(task => task.completed).forEach(task => {
     const taskElement = document.createElement('li');
     taskElement.textContent = `${task.name} - ${task.time} minutes`;
