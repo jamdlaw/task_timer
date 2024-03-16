@@ -15,6 +15,11 @@ function App() {
   
   useEffect(() => {
     let interval = null;
+
+    if (timer.minutes === 0 && timer.seconds === 0 && isActive) {
+      handleTimerCompletion();
+      // Additional logic to reset the timer for the new mode or stop the timer could go here
+    }
   
     if (isActive) {
       interval = setInterval(() => {
@@ -59,6 +64,50 @@ function App() {
     // Logic to mark a task as completed
   };
 
+  const handleTimerCompletion = () => {
+    if (mode === 'pomodoro') {
+      setSessions(prevSessions => {
+        const newSessions = prevSessions + 1;
+        const isLongBreak = newSessions % timerConfig.longBreakInterval === 0;
+  
+        setMode(isLongBreak ? 'longBreak' : 'shortBreak');
+        return newSessions;
+      });
+    } else {
+      setMode('pomodoro');
+    }
+  
+    setTasks(prevTasks => {
+      if (prevTasks.length > 0) {
+        const updatedTasks = [...prevTasks];
+        updatedTasks[updatedTasks.length - 1] = {
+          ...updatedTasks[updatedTasks.length - 1],
+          completed: true,
+        };
+        return updatedTasks;
+      }
+      return prevTasks;
+    });
+  
+    notifyUser(); // Ensure this is adapted for React, possibly using state or context
+    playSound(); // Ensure this function is adapted for React as well
+  };
+
+  const notifyUser = () => {
+    if (Notification.permission === 'granted') {
+      const message = mode === 'pomodoro' ? 'Time to work!' : 'Time for a break!';
+      new Notification(message);
+    } else if (Notification.permission !== 'denied') {
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          const message = mode === 'pomodoro' ? 'Time to work!' : 'Time for a break!';
+          new Notification(message);
+        }
+      });
+    }
+  };
+  
+  
   return (
     <div className="app timer">
       <div className="mode-buttons">
