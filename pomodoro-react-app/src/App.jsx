@@ -14,6 +14,9 @@ function App() {
   const [sessions, setSessions] = useState(0);
   const [timerEnded, setTimerEnded] = useState(false);
 
+  const pomodoroSound = useRef(null);
+  const shortBreakSound = useRef(null);
+  const longBreakSound = useRef(null);
   
   useEffect(() => {
     let interval = null;
@@ -121,7 +124,17 @@ function App() {
       Notification.requestPermission();
     }
   };
-    
+  
+  const playSound = () => {
+    if (mode === 'pomodoro') {
+      pomodoroSound.current.play();
+    } else if (mode === 'shortBreak') {
+      shortBreakSound.current.play();
+    } else if (mode === 'longBreak') {
+      longBreakSound.current.play();
+    }
+  };
+
   return (
     <div className="app timer">
       <div className="mode-buttons">
@@ -142,7 +155,7 @@ function App() {
       </div>
       <button onClick={handleStartStop}>{isActive ? 'Stop' : 'Start'}</button>
       <TaskListPanel tasks={tasks} />
-      
+
       <audio ref={pomodoroSound} src="backtowork.mp3" preload="auto"></audio>
       <audio ref={shortBreakSound} src="break.mp3" preload="auto"></audio>
       <audio ref={longBreakSound} src="break.mp3" preload="auto"></audio>
