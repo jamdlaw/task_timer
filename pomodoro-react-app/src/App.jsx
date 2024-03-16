@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef  } from 'react';
 import './App.css'; // Make sure to import your CSS styles
 import Clock from './components/Clock';
 import ModeButton from './components/ModeButton';
