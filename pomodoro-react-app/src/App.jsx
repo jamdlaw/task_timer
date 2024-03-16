@@ -66,7 +66,6 @@ function App() {
         <ModeButton mode="longBreak" active={mode === 'longBreak'} setMode={setMode} />
       </div>
       <Clock minutes={timer.minutes} seconds={timer.seconds} />
-       {/* Text input for task name */}
        <div className="task-name-input">
         <input
           type="text"
