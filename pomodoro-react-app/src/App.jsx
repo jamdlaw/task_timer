@@ -107,7 +107,14 @@ function App() {
     }
   };
   
-  
+  const handleRequestPermission = () => {
+    if (!('Notification' in window)) {
+      alert("This browser does not support desktop notification");
+    } else if (Notification.permission !== 'granted') {
+      Notification.requestPermission();
+    }
+  };
+    
   return (
     <div className="app timer">
       <div className="mode-buttons">
@@ -115,6 +122,7 @@ function App() {
         <ModeButton mode="shortBreak" active={mode === 'shortBreak'} setMode={setMode} />
         <ModeButton mode="longBreak" active={mode === 'longBreak'} setMode={setMode} />
       </div>
+      <button onClick={handleRequestPermission}>Enable Notifications</button>
       <Clock minutes={timer.minutes} seconds={timer.seconds} />
        <div className="task-name-input">
         <input
