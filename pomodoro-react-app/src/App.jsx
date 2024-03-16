@@ -20,6 +20,10 @@ function App() {
       handleTimerCompletion();
       // Additional logic to reset the timer for the new mode or stop the timer could go here
     }
+
+    if (timerEnded) {
+      notifyUser();
+    }
   
     if (isActive) {
       interval = setInterval(() => {
