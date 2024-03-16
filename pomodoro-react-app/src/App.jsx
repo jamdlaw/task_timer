@@ -11,6 +11,7 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [currentTaskName, setCurrentTaskName] = useState('');
+  const [sessions, setSessions] = useState(0);
   
   useEffect(() => {
     let interval = null;
