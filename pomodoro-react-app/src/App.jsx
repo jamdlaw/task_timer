@@ -46,12 +46,12 @@ function App() {
 
   const handleModeChange = (newMode) => {
     setMode(newMode);
-    // Update timer based on mode
+    handleStartStop();
   };
 
   const handleStartStop = () => {
     setIsActive(!isActive);
-    // Start or stop the timer
+    
   };
 
   const markTaskCompleted = (taskName) => {
