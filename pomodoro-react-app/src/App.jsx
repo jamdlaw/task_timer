@@ -12,7 +12,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [currentTaskName, setCurrentTaskName] = useState('');
   const [sessions, setSessions] = useState(0);
-  const [timerEnded, setTimerEnded] = useState(false);
+  
 
   const pomodoroSound = useRef(null);
   const shortBreakSound = useRef(null);
@@ -24,11 +24,8 @@ function App() {
 
     if (timer.minutes === 0 && timer.seconds === 0 && isActive) {
       handleTimerCompletion;
-      // Additional logic to reset the timer for the new mode or stop the timer could go here
-    }
-
-    if (timerEnded) {
       notifyUser();
+      // Additional logic to reset the timer for the new mode or stop the timer could go here
     }
   
     if (isActive) {
