@@ -23,7 +23,7 @@ function App() {
 
 
     if (timer.minutes === 0 && timer.seconds === 0 && isActive) {
-      handleTimerCompletion(currentTaskName);
+      handleTimerCompletion;
       // Additional logic to reset the timer for the new mode or stop the timer could go here
     }
 
