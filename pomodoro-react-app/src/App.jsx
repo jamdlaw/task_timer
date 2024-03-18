@@ -6,6 +6,7 @@ import TaskListPanel from './components/TaskListPanel';
 
 
 function App() {
+
   const [mode, setMode] = useState('pomodoro');
   const [timer, setTimer] = useState({ minutes: 1, seconds: 0 });
   const [isActive, setIsActive] = useState(false);
@@ -13,7 +14,6 @@ function App() {
   const [currentTaskName, setCurrentTaskName] = useState('');
   const [sessions, setSessions] = useState(0);
   
-
   const pomodoroSound = useRef(null);
   const shortBreakSound = useRef(null);
   const longBreakSound = useRef(null);
