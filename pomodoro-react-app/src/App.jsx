@@ -23,7 +23,7 @@ function App() {
 
 
     if (timer.minutes === 0 && timer.seconds === 0 && isActive) {
-      handleTimerCompletion();
+      handleTimerCompletion(currentTaskName);
       // Additional logic to reset the timer for the new mode or stop the timer could go here
     }
 
@@ -82,6 +82,7 @@ function App() {
         const isLongBreak = newSessions % timerConfig.longBreakInterval === 0;
   
         setMode(isLongBreak ? 'longBreak' : 'shortBreak');
+        markTaskCompleted('');
         return newSessions;
       });
     } else {
