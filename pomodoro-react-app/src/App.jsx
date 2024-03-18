@@ -61,6 +61,7 @@ function App() {
   
 
   const handleModeChange = (newMode) => {
+    console.log('howdy');
     setMode(newMode);
     handleStartStop();
   };
@@ -138,7 +139,7 @@ function App() {
   return (
     <div className="app timer">
       <div className="mode-buttons">
-        <ModeButton mode="pomodoro" active={mode === 'pomodoro'} setMode={setMode} />
+        <ModeButton mode="pomodoro" active={mode === 'pomodoro'} onClick={() =>handleModeChange('pomodoro')} setMode={setMode} />
         <ModeButton mode="shortBreak" active={mode === 'shortBreak'} setMode={setMode} />
         <ModeButton mode="longBreak" active={mode === 'longBreak'} setMode={setMode} />
       </div>
