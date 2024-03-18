@@ -140,8 +140,8 @@ function App() {
     <div className="app timer">
       <div className="mode-buttons">
         <ModeButton mode="pomodoro" active={mode === 'pomodoro'}  onClick={() => handleModeChange('pomodoro')} />
-        <ModeButton mode="shortBreak" active={mode === 'shortBreak'} setMode={setMode} />
-        <ModeButton mode="longBreak" active={mode === 'longBreak'} setMode={setMode} />
+        <ModeButton mode="shortBreak" active={mode === 'shortBreak'} onClick={() => handleModeChange('shortBreak')} />
+        <ModeButton mode="longBreak" active={mode === 'longBreak'} onClick={() => handleModeChange('longBreak')} />
       </div>
       <button onClick={handleRequestPermission}>Enable Notifications</button>
       <Clock minutes={timer.minutes} seconds={timer.seconds} />
