@@ -72,7 +72,7 @@ function App() {
   };
 
   const markTaskCompleted = (taskName) => {
-    // Logic to mark a task as completed
+    console.log('task list ', tasks);
   };
 
   const handleTimerCompletion = () => {
@@ -82,7 +82,7 @@ function App() {
         const isLongBreak = newSessions % timerConfig.longBreakInterval === 0;
   
         setMode(isLongBreak ? 'longBreak' : 'shortBreak');
-        markTaskCompleted('');
+        markTaskCompleted(currentTaskName);
         return newSessions;
       });
     } else {
@@ -101,8 +101,8 @@ function App() {
       return prevTasks;
     });
   
-    notifyUser(); // Ensure this is adapted for React, possibly using state or context
-    playSound(); // Ensure this function is adapted for React as well
+    notifyUser(); 
+    playSound(); 
   };
 
   const notifyUser = () => {
