@@ -61,7 +61,7 @@ function App() {
   
 
   const handleModeChange = (newMode) => {
-    console.log('howdy');
+    console.log(newMode);
     setMode(newMode);
     handleStartStop();
   };
