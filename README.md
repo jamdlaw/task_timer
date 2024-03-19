@@ -39,4 +39,4 @@ cd pomodoro-react-app
 npm run dev
 ```
 
-### sevelte version coming soon
+### Sevelte version coming soon
