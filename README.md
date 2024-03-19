@@ -25,6 +25,12 @@ Before you begin, ensure you have the latest version of Node.js installed on you
 ```bash
 git clone https://github.com/jamdlaw/task_timer.git
 ```
+### JavaScript version
+
+```bash
+cd  pomodoro-javascript-app
+npm start
+```
 
 ### React version
 
