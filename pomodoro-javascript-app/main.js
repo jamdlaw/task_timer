@@ -166,3 +166,8 @@ document.getElementById('js-task-list').addEventListener('click', () => {
   });
   console.log(tasks);
 });
+
+/* code for create pomodoro */
+document.getElementById('js-create-pomodoro').addEventListener('click', () =>{
+  console.log('howdy');
+});
