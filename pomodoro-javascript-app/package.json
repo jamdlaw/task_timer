@@ -1,0 +1,21 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "A pomodoro timer application built with JavaScript",
+  "main": "main.js",
+  "scripts": {
+    "start": "npx browser-sync start -sw"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamdlaw/task_timer.git"
+  },
+  "keywords": [
+    "pomodoro",
+    "javascript"
+  ],
+  "author": "James Lawrence",
+  "dependencies": {
+    "browser-sync": "^2.26.12"
+  }
+}
