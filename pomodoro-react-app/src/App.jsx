@@ -147,6 +147,7 @@ function App() {
         <ModeButton mode="longBreak" active={mode === 'longBreak'} onClick={() => handleModeChange('longBreak')} />
       </div>
       <button onClick={handleRequestPermission}>Enable Notifications</button>
+      <button onClick={() =>setShowTaskListPanel(!showTaskListPanel)}>Show Task List </button>
       <Clock minutes={timer.minutes} seconds={timer.seconds} />
        <div className="task-name-input">
         <input
