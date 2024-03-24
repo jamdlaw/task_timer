@@ -58,14 +58,12 @@ function App() {
   
 
   const handleModeChange = (newMode) => {
-    console.log(newMode);
     setMode(newMode);
     handleStartStop();
   };
 
   const handleStartStop = () => {
-    setIsActive(!isActive);
-    
+    setIsActive(!isActive); 
   };
 
   const markTaskCompleted = (taskName) => {
