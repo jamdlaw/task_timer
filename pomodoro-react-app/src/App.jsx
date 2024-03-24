@@ -63,6 +63,12 @@ function App() {
   };
 
   const handleStartStop = () => {
+    //TODO: 1a) if we are in active pomodoro, changing
+    //to break reset the timer and remove active task
+   
+    ////TODO: 1b) if changing to pomodoro then reset clock
+
+   
     setIsActive(!isActive); 
   };
 
