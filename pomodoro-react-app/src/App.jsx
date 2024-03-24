@@ -158,7 +158,7 @@ function App() {
         />
       </div>
       <button onClick={handleStartStop}>{isActive ? 'Stop' : 'Start'}</button>
-      <TaskListPanel tasks={tasks} />
+      {showTaskListPanel && <TaskListPanel tasks={tasks}  />}
 
       <audio ref={pomodoroSound} src="backtowork.mp3" preload="auto"></audio>
       <audio ref={shortBreakSound} src="break.mp3" preload="auto"></audio>
