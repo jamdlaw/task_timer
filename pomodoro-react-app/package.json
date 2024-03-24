@@ -1,5 +1,5 @@
 {
-    "name": "react-vite-app",
+    "name": "task-timer-app",
     "version": "1.0.0",
     "scripts": {
       "dev": "vite",
