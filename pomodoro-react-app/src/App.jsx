@@ -13,6 +13,7 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [currentTaskName, setCurrentTaskName] = useState('');
   const [sessions, setSessions] = useState(0);
+  const [showTaskListPanel, setShowTaskListPanel] = useState(false);
   
   const pomodoroSound = useRef(null);
   const shortBreakSound = useRef(null);
