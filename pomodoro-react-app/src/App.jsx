@@ -64,7 +64,10 @@ function App() {
     handleStop();
   };
 
-  const handleStop = () =>{}
+  const handleStop = () =>{
+    setTimer({ minutes: 1, seconds: 0 })
+    toggleMainButton(false);
+  }
 
   const handleStartStop = () => {
     //TODO: 1a) if we are in active pomodoro, changing
