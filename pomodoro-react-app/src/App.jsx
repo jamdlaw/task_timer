@@ -60,7 +60,6 @@ function App() {
 
   const handleModeChange = (newMode) => {
     setMode(newMode);
-    setIsActive(!isActive);
     handleStop();
   };
 
