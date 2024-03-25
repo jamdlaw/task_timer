@@ -60,8 +60,11 @@ function App() {
 
   const handleModeChange = (newMode) => {
     setMode(newMode);
-    handleStartStop();
+    setIsActive(!isActive);
+    handleStop();
   };
+
+  const handleStop = () =>{}
 
   const handleStartStop = () => {
     //TODO: 1a) if we are in active pomodoro, changing
@@ -70,7 +73,7 @@ function App() {
     ////TODO: 1b) if changing to pomodoro then reset clock
 
    
-    setIsActive(!isActive); 
+     
   };
 
   const markTaskCompleted = (taskName) => {
