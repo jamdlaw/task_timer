@@ -14,7 +14,9 @@ const tasks = [];
 const buttonSound = new Audio('button-sound.mp3');
 const modeButtons = document.querySelector('#js-mode-buttons');
 const mainButton = document.getElementById('js-btn');
+const MILLISECONDS_IN_A_SECOND = 1000;
 let interval;
+
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', initialize);
@@ -78,7 +80,9 @@ function startTimer() {
   }
 
   toggleMainButton(true);
-  const endTime = new Date().getTime() + timerConfig.remainingTime.total * 1000;
+
+  //current time + remaining time stored as milisecounds
+  const endTime = new Date().getTime() + timerConfig.remainingTime.total * MILLISECONDS_IN_A_SECOND;
 
   interval = setInterval(() => {
     timerConfig.remainingTime = calculateRemainingTime(endTime);
@@ -88,7 +92,7 @@ function startTimer() {
       clearInterval(interval);
       handleTimerCompletion();
     }
-  }, 1000);
+  }, MILLISECONDS_IN_A_SECOND);
 }
 
 function stopTimer() {
@@ -109,7 +113,7 @@ function toggleMainButton(isActive) {
 }
 
 function calculateRemainingTime(endTime) {
-  const total = Math.floor((endTime - new Date().getTime()) / 1000);
+  const total = Math.floor((endTime - new Date().getTime()) / MILLISECONDS_IN_A_SECOND);
   return {
     total,
     minutes: Math.floor((total / 60) % 60),
