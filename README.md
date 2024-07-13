@@ -32,11 +32,11 @@ cd  pomodoro-javascript-app
 npm start
 ```
 
-### React version
+### React version (not complete)
 
 ```bash
 cd pomodoro-react-app
 npm run dev
 ```
 
-### Sevelte version coming soon
+I wanted to do side by side comparison of react, vinalla js, and svelte.
