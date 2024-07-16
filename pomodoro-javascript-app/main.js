@@ -39,12 +39,12 @@ function requestNotificationPermission() {
   }
 }
 
+// click for buttons pomodoro|shortBreak|longBreak
 function handleModeClick(event) {
   const mode = event.target.dataset.mode;
   if (!mode) return;
 
   switchMode(mode);
-  stopTimer();
 }
 
 function switchMode(mode) {
