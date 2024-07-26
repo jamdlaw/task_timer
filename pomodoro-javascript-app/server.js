@@ -7,6 +7,8 @@ const PORT = 3000;
 const INDEX_PATH = path.join(__dirname, 'index.html');
 const ADMIN_PATH = path.join(__dirname, 'admin.html');
 
+app.use(express.static('public')); // Serve files from the 'public' directory
+
 // Route for index.html
 app.get('/', (req, res) => {
   res.sendFile(INDEX_PATH);
