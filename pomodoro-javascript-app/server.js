@@ -19,6 +19,15 @@ app.get('/admin', (req, res) => {
   res.sendFile(ADMIN_PATH);
 });
 
+app.post('/admin', (req, res) => {
+   // Accessing the data from the request body
+   const requestData = req.body;
+   console.log(requestData);
+
+   // Responding to the client
+   res.send('Data received');
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
