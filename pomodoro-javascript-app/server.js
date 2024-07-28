@@ -8,6 +8,8 @@ const INDEX_PATH = path.join(__dirname, 'index.html');
 const ADMIN_PATH = path.join(__dirname, 'admin.html');
 
 app.use(express.static('public')); // Serve files from the 'public' directory
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Add this line to parse JSON request bodies
 
 // Route for index.html
 app.get('/', (req, res) => {
@@ -25,7 +27,7 @@ app.post('/admin', (req, res) => {
    console.log(requestData);
 
    // Responding to the client
-   res.send('Data received');
+   res.send(JSON.stringify(requestData));
 });
 
 // Start the server
