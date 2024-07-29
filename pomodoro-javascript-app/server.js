@@ -24,8 +24,10 @@ app.get('/admin', (req, res) => {
 app.post('/admin', (req, res) => {
    // Accessing the data from the request body
    const requestData = req.body;
-   console.log(requestData);
-
+   const pomodoro = requestData.sessionTime;
+   const breakTime = requestData.breakTime;
+   const longBreakInterval = requestData.sessionsBeforeLongBreak;
+   console.log(pomodoro,breakTime,longBreakInterval);
    // Responding to the client
    res.send(JSON.stringify(requestData));
 });
