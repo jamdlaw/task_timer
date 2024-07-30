@@ -40,3 +40,6 @@ npm run dev
 ```
 
 I wanted to do side by side comparison of react, vinalla js, and svelte.
+
+hit a snag serving html and javascript from node. as well as code it now hard to 
+refector to expose the config object.
