@@ -29,7 +29,7 @@ app.post('/admin', (req, res) => {
    const longBreakInterval = requestData.sessionsBeforeLongBreak;
    console.log(pomodoro,breakTime,longBreakInterval);
    // Responding to the client
-   res.send(JSON.stringify(requestData));
+   res.sendFile(INDEX_PATH,JSON.stringify(requestData));
 });
 
 // Start the server
