@@ -36,6 +36,7 @@ npm start
 
 ```bash
 cd pomodoro-react-app
+npm install
 npm run dev
 ```
 
