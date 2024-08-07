@@ -1,8 +1,14 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
 .app {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  align-items: center; /* Center horizontally */
   height: 100vh;
   font-family: Arial, sans-serif;
   padding-top: 20px; /* Add padding at the top to space out content */
