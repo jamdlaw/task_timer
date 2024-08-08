@@ -3,7 +3,7 @@ import './App.css';
 import Clock from './components/Clock';
 
 function App() {
-  const [minutes, setMinutes] = useState(0);
+  const [minutes, setMinutes] = useState(25);
   const [seconds, setSeconds] = useState(0);
 
   return (
