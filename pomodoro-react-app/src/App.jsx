@@ -46,7 +46,7 @@ function App() {
     <div className="app">
       <h1> Task Timer </h1> 
       <Clock minutes={minutes} seconds={seconds} />
-      <div class="buttons-group">
+      <div className="buttons-group">
         <button onClick={startTimer}>Start</button>
         <button onClick={stopTimer}>Stop</button>
         <button onClick={resetTimer}>Reset</button>

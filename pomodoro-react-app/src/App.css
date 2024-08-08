@@ -34,3 +34,23 @@ h1 {
   font-size: 36px;
   font-weight: bold;
 }
+
+.buttons-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Add space between buttons */
+}
+
+.buttons-group button {
+  border: 1px solid black;
+  padding: 10px 20px; /* Add padding for better button size */
+  border-radius: 5px; /* Optional: Round the corners for a smoother look */
+  background-color: #f0f0f0; /* Optional: Background color for better contrast */
+  cursor: pointer; /* Pointer cursor for better UX */
+  transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+.buttons-group button:hover {
+  background-color: #e0e0e0; /* Optional: Slightly darker color on hover */
+  border-color: #a0a0a0; /* Subtle gray border color on hover */
+}
