@@ -8,6 +8,7 @@ function App() {
   const [inputMinutes, setInputMinutes] = useState(25);
   const [inputSeconds, setInputSeconds] = useState(0);
   const timerRef = useRef(null);
+  const [isInputVisible, setIsInputVisible] = useState(false);
 
   const startTimer = () => {
     if (timerRef.current !== null) return; // Prevent multiple intervals
@@ -50,25 +51,34 @@ function App() {
     setSeconds(parseInt(inputSeconds));
   };
 
+  const toggleInputVisibility = () => {
+    setIsInputVisible(!isInputVisible);
+  };
+
   return (
     <div className="app">
       <h1>Task Timer</h1>
       <Clock minutes={minutes} seconds={seconds} />
-      <div className="input-group">
-        <input 
-          type="number" 
-          value={inputMinutes} 
-          onChange={(e) => setInputMinutes(e.target.value)} 
-          placeholder="Minutes"
-        />
-        <input 
-          type="number" 
-          value={inputSeconds} 
-          onChange={(e) => setInputSeconds(e.target.value)} 
-          placeholder="Seconds"
-        />
-        <button onClick={handleSetTimer}>Set Timer</button>
-      </div>
+      <button onClick={toggleInputVisibility}>
+        {isInputVisible ? 'Hide' : 'Show'}
+      </button>
+      {isInputVisible &&
+        <div className="input-group">
+          <input 
+            type="number" 
+            value={inputMinutes} 
+            onChange={(e) => setInputMinutes(e.target.value)} 
+            placeholder="Minutes"
+          />
+          <input 
+            type="number" 
+            value={inputSeconds} 
+            onChange={(e) => setInputSeconds(e.target.value)} 
+            placeholder="Seconds"
+          />
+          <button onClick={handleSetTimer}>Set Timer</button>
+        </div>
+      }
       <div className="buttons-group">
         <button onClick={startTimer}>Start</button>
         <button onClick={stopTimer}>Stop</button>
