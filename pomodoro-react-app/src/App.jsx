@@ -60,7 +60,7 @@ function App() {
     <div className="app">
       <h1>Task Timer</h1>
       <Clock minutes={minutes} seconds={seconds} />
-      <button onClick={toggleInputVisibility}>
+      <button className="toggle-button" onClick={toggleInputVisibility}>
         {isInputVisible ? 'Hide' : 'Set Timer'}
       </button>
       {isInputVisible &&
