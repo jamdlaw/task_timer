@@ -61,7 +61,7 @@ function App() {
       <h1>Task Timer</h1>
       <Clock minutes={minutes} seconds={seconds} />
       <button onClick={toggleInputVisibility}>
-        {isInputVisible ? 'Hide' : 'Show'}
+        {isInputVisible ? 'Hide' : 'Set Timer'}
       </button>
       {isInputVisible &&
         <div className="input-group">
