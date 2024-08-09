@@ -9,6 +9,7 @@ function App() {
   const [inputSeconds, setInputSeconds] = useState(0);
   const timerRef = useRef(null);
   const [isInputVisible, setIsInputVisible] = useState(false);
+  const [taskName, setTaskName] = useState('');
 
   const startTimer = () => {
     if (timerRef.current !== null) return; // Prevent multiple intervals
@@ -49,6 +50,7 @@ function App() {
     stopTimer();
     setMinutes(parseInt(inputMinutes));
     setSeconds(parseInt(inputSeconds));
+    
     setIsInputVisible(false);
   };
 
@@ -65,6 +67,16 @@ function App() {
       </button>
       {isInputVisible &&
         <div className="input-group">
+          <input 
+            type="text" 
+            id="taskName" 
+            name="taskName" 
+            placeholder="Enter task name" 
+            value={taskName} 
+            onChange={(e) => setTaskName(e.target.value)} 
+            className="task-input"
+          />
+
           <input 
             type="number" 
             value={inputMinutes} 
