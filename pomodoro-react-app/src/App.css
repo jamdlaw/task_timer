@@ -128,8 +128,15 @@ h1 {
   margin-bottom: 20px; /* Space between input groups */
 }
 
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between inputs and button */
+  margin-bottom: 20px; /* Space below the input group */
+}
+
 .task-input {
-  width: 100%;
+  flex: 2; /* Take up available space to make it wider */
   padding: 10px;
   border: 1px solid #a0a0a0;
   border-radius: 5px;
@@ -145,14 +152,13 @@ h1 {
 }
 
 .minutes-input {
-  width: 80px;
+  width: 60px; /* Fixed width for minutes input */
   padding: 10px;
   border: 1px solid #a0a0a0;
   border-radius: 5px;
   font-size: 16px;
   background-color: #f9f9f9;
   transition: border-color 0.3s, box-shadow 0.3s;
-  margin-right: 10px; /* Space between input and button */
 }
 
 .minutes-input:focus {
