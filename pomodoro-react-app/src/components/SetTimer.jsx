@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SetTimer (taskName, inputMinutes, handleSetTimer, setTaskName) {
+function SetTimer ({taskName, inputMinutes, handleSetTimer, setTaskName, setInputMinutes}) {
     return (
         <div className="input-group">
             <input 
