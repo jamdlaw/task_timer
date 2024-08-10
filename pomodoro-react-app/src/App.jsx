@@ -66,7 +66,7 @@ function App() {
         {isInputVisible ? 'Hide' : 'Set Timer'}
       </button>
       {isInputVisible &&
-        <div className="input-group">
+        <div className="input-group">  
           <input 
             type="text" 
             id="taskName" 
@@ -76,21 +76,16 @@ function App() {
             onChange={(e) => setTaskName(e.target.value)} 
             className="task-input"
           />
-
-          <input 
-            type="number" 
-            value={inputMinutes} 
-            onChange={(e) => setInputMinutes(e.target.value)} 
-            placeholder="Minutes"
-          />
-          <input 
-            type="number" 
-            value={inputSeconds} 
-            onChange={(e) => setInputSeconds(e.target.value)} 
-            placeholder="Seconds"
-          />
-          <button onClick={handleSetTimer}>Set Timer</button>
-        </div>
+            <input 
+              type="number" 
+              value={inputMinutes} 
+              onChange={(e) => setInputMinutes(e.target.value)} 
+              placeholder="Minutes" 
+              className="minutes-input"
+            />
+          <button onClick={handleSetTimer} className="set-timer-button">Set Timer</button>
+      </div>
+    
       }
       <div className="buttons-group">
         <button onClick={startTimer}>Start</button>

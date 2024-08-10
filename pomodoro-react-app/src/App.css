@@ -124,3 +124,54 @@ h1 {
   outline: none;
 }
 
+.input-group {
+  margin-bottom: 20px; /* Space between input groups */
+}
+
+.task-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #a0a0a0;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.task-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+.minutes-input {
+  width: 80px;
+  padding: 10px;
+  border: 1px solid #a0a0a0;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  margin-right: 10px; /* Space between input and button */
+}
+
+.minutes-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+.set-timer-button {
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.set-timer-button:hover {
+  background-color: #e0e0e0;
+  border-color: #a0a0a0;
+  transform: scale(1.05);
+}
