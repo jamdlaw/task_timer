@@ -11,6 +11,7 @@ function App() {
   const timerRef = useRef(null);
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [taskName, setTaskName] = useState('');
+  const [taskList, setTaskList] = useState({taskName:"", timeWorked:0});
 
   const startTimer = () => {
     if (timerRef.current !== null) return; // Prevent multiple intervals
