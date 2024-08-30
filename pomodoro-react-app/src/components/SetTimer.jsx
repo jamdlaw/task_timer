@@ -10,7 +10,7 @@ function SetTimer ({taskName, inputMinutes, handleSetTimer, setTaskName, setInpu
                 placeholder="Enter task name" 
                 value={taskName} 
                 onChange={(e) => setTaskName(e.target.value)} 
-                className="task-input"
+                className="task-input full-width-input"
             />
             <input 
                 type="number" 
@@ -19,7 +19,7 @@ function SetTimer ({taskName, inputMinutes, handleSetTimer, setTaskName, setInpu
                 placeholder="Minutes" 
                 className="minutes-input"
             />
-        <button onClick={handleSetTimer} className="set-timer-button">Set Timer</button>
+            <button onClick={handleSetTimer} className="set-timer-button">Set Timer</button>
         </div>
      )
 }
