@@ -11,7 +11,7 @@ function App() {
   const timerRef = useRef(null);
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [taskName, setTaskName] = useState('');
-  const [taskList, setTaskList] = useState({taskName:"", timeWorked:0});
+  const [taskList, setTaskList] = useState([]);
 
   const startTimer = () => {
     if (timerRef.current !== null) return; // Prevent multiple intervals
@@ -22,6 +22,16 @@ function App() {
             if (prevMinutes === 0) {
               clearInterval(timerRef.current);
               timerRef.current = null;
+              
+              // Calculate the total time worked in seconds
+              const timeWorked = (inputMinutes * 60) + inputSeconds;
+              
+              // Update the task list when time runs out
+              setTaskList((prevTaskList) => [
+                ...prevTaskList,
+                { taskName, timeWorked }
+              ]);
+
               return 0;
             } else {
               return prevMinutes - 1;
@@ -52,7 +62,6 @@ function App() {
     stopTimer();
     setMinutes(parseInt(inputMinutes));
     setSeconds(parseInt(inputSeconds));
-    
     setIsInputVisible(false);
   };
 
@@ -81,6 +90,14 @@ function App() {
         <button onClick={stopTimer}>Stop</button>
         <button onClick={resetTimer}>Reset</button>
       </div>
+      <h2>Task List</h2>
+      <ul>
+        {taskList.map((task, index) => (
+          <li key={index}>
+            {task.taskName} - {task.timeWorked} seconds
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
