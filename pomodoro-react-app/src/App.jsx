@@ -62,7 +62,8 @@ function App() {
     stopTimer();
     setMinutes(parseInt(inputMinutes));
     setSeconds(parseInt(inputSeconds));
-    setIsInputVisible(false);
+    // debug stuff that needs to be fixed later
+   // setIsInputVisible(false);
   };
 
   const toggleInputVisibility = () => {
