@@ -7,7 +7,6 @@ function App() {
   const [minutes, setMinutes] = useState(25);
   const [seconds, setSeconds] = useState(0);
   const [inputMinutes, setInputMinutes] = useState(25);
-  const [inputSeconds, setInputSeconds] = useState(0);
   const timerRef = useRef(null);
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [taskName, setTaskName] = useState('');
@@ -23,10 +22,8 @@ function App() {
               clearInterval(timerRef.current);
               timerRef.current = null;
               
-              // Calculate the total time worked in seconds
-              const timeWorked = (inputMinutes * 60) + inputSeconds;
+              const timeWorked = minutes * 60;
               
-              // Update the task list when time runs out
               setTaskList((prevTaskList) => [
                 ...prevTaskList,
                 { taskName, timeWorked }
@@ -58,12 +55,10 @@ function App() {
     setSeconds(0);
   };
 
-  const handleSetTimer = () => {
+  const handleSetTimer = (newMinutes) => {
     stopTimer();
-    setMinutes(parseInt(inputMinutes));
-    setSeconds(parseInt(inputSeconds));
-    // debug stuff that needs to be fixed later
-   // setIsInputVisible(false);
+    setMinutes(newMinutes);
+    setSeconds(0); // Reset seconds to 0
   };
 
   const toggleInputVisibility = () => {
