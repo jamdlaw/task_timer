@@ -1,9 +1,16 @@
 import React from 'react';
 
 function SetTimer({ taskName, inputMinutes, handleSetTimer, setTaskName, setInputMinutes }) {
+  const handleMinutesChange = (e) => {
+    const value = e.target.value;
+    if (value === '' || /^\d+$/.test(value)) { // Allow only digits or empty string
+      setInputMinutes(value);
+      handleSetTimer(parseInt(value) || 0); // Pass parsed value to handleSetTimer
+    }
+  };
+
   return (
     <div className="input-group">
-      {/* Separate container for taskName input to make it appear on its own line */}
       <div className="task-input-container">
         <input 
           type="text" 
@@ -16,16 +23,16 @@ function SetTimer({ taskName, inputMinutes, handleSetTimer, setTaskName, setInpu
         />
       </div>
       
-      {/* New line here: Keep inputs for minutes and button together */}
       <div className="time-input-container">
         <input 
           type="number" 
           value={inputMinutes} 
-          onChange={(e) => setInputMinutes(e.target.value)} 
+          onChange={handleMinutesChange} 
           placeholder="Minutes" 
           className="minutes-input"
+          min="0"
         />
-        <button onClick={handleSetTimer} className="set-timer-button">Set Timer</button>
+        <button onClick={() => handleSetTimer(parseInt(inputMinutes) || 0)} className="set-timer-button">Set Timer</button>
       </div>
     </div>
   );
